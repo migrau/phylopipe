@@ -7,6 +7,7 @@ Scripts used to perform a phylogeny.
 ## Contents
 
 * _src/snakeorthomcl.py_. Run orthomcl using a batch of protein fasta files.
+* _src/groups2fasta.py_. Create a fasta file for each ortholog group. 
 * _src/snakephylo.py_. Obtain raxml tree from a batch of unaligned fasta files, using codon mode.
 * _data_. Required fasta files to complete an example run.
 
