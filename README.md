@@ -2,7 +2,7 @@
 
 ## Description
 
-Scripts used to perform a phylogeny.
+[Snakemake](https://bitbucket.org/snakemake/snakemake/wiki/Home) scripts used to perform a phylogeny.
 
 ## Contents
 
@@ -11,11 +11,9 @@ Scripts used to perform a phylogeny.
 * _src/snk_phylo.py_. Obtain raxml tree from a batch of unaligned fasta files, using codon mode.
 * _data_. Required fasta files to complete an example run.
 
-### snk_eorthomcl
+### snk_orthomcl
 
-_OrthoMCL Snakemake script_
-
-It runs all the steps of orthoMCL automatically, parallelizing blast (based on http://orthomcl.org/common/downloads/software/v2.0/UserGuide.txt).
+It runs all the steps of OrthoMCL automatically, parallelizing blast (based on http://orthomcl.org/common/downloads/software/v2.0/UserGuide.txt).
 - Input files: CDS proteins (obtanied from transdecoder for example).
 - Output file: groups.txt, containing all the ortholog clusters.
 
@@ -33,7 +31,7 @@ _Possible error_
 _Usage_
 
 ```{bash}
-$ snakemake --snakefile snakeorthomcl.py (-np) -j 24
+$ snakemake --snakefile snk_orthomcl.py (-np) -j 24
 ```
 
 ### snk_groups2fasta
@@ -46,15 +44,19 @@ _Considerations_
 
 - The fasta files should be renamed with the same 4 letters codes used in the previous orhomcl run.
 
-_Example run_
+_Usage_
 
+```{bash}
 snakemake --snakefile=snk_groups2fasta.py -j 12
+```
 
 ### snk_phylo
 
 From a batch of fasta files of family genes (orthomcl groups output) it obtains a phylogenetic tree.  
+- Input files: Fasta files, containing ortholog groups (output of snk_groups2fasta).
+- Output file: RAxML tree.
 
-_Steps_
+_Rules's description_
 
 1. Remove duplicate records. One record from each sample is kept (longest or random).
 2. Translate clusters to protein and do alignment with muscle.
@@ -81,8 +83,8 @@ _Usage (slurm example)_
 ```{bash}
 $ srun --partition=compute --time 7-0 --mem=10G --cpus-per-task=24 --ntasks=1 --pty bash 
 $ module load python/3.5.0 
-(dry run) $ snakemake --snakefile snakephylo.py -j 24 --config fastadir=data/ -np 
-$ snakemake --snakefile snakephylo.py -j 24 --config fastadir=data/ 
+(dry run) $ snakemake --snakefile snk_phylo.py -j 24 --config fastadir=data/ -np 
+$ snakemake --snakefile snk_phylo.py -j 24 --config fastadir=data/ 
 ```
 
 ## Steps
