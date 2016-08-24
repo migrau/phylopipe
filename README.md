@@ -6,12 +6,12 @@ Scripts used to perform a phylogeny.
 
 ## Contents
 
-* _src/snakeorthomcl.py_. Run orthomcl using a batch of protein fasta files.
-* _src/groups2fasta.py_. Create a fasta file for each ortholog group. 
-* _src/snakephylo.py_. Obtain raxml tree from a batch of unaligned fasta files, using codon mode.
+* _src/snk_orthomcl.py_. Run orthomcl using a batch of protein fasta files.
+* _src/snk_groups2fasta.py_. Create a fasta file for each ortholog group. 
+* _src/snk_phylo.py_. Obtain raxml tree from a batch of unaligned fasta files, using codon mode.
 * _data_. Required fasta files to complete an example run.
 
-### snakeorthomcl
+### snk_eorthomcl
 
 _OrthoMCL Snakemake script_
 
@@ -36,7 +36,21 @@ _Usage_
 $ snakemake --snakefile snakeorthomcl.py (-np) -j 24
 ```
 
-### snakephylo
+### snk_groups2fasta
+
+Generate the fasta files containing the family genes from the ortholog groups.
+- Input files: groups.txt from orthomcl output AND fasta CDS files for each sample.
+- Output file: fasta files with the ortholog RNA sequences.
+
+_Considerations_
+
+- The fasta files should be renamed with the same 4 letters codes used in the previous orhomcl run.
+
+_Example run_
+
+snakemake --snakefile=snk_groups2fasta.py -j 12
+
+### snk_phylo
 
 From a batch of fasta files of family genes (orthomcl groups output) it obtains a phylogenetic tree.  
 
