@@ -1,23 +1,23 @@
 #########################################################################################
-## OrthoMCL Snakemake script															#
-# It runs all the steps of orthoMCL automatically, parallelizing blast.					#
-# Steps are based on http://orthomcl.org/common/downloads/software/v2.0/UserGuide.txt 	#
-# Input files: CDS proteins (obtanied from transdecoder for example).					#
-# Output file: groups.txt, containing all the ortholog clusters.						#
-#  																						#
-## Considerations																		#
-# - An empty mysql database is required. 												#
-# - FASTA files should be renamed using only four letters: XXXX.fasta 	 				#
-# - orthomcl.config file is also required (attached). 									#
-# - Blast step is parallelized, by default 50 threads. 									#
-#																						#
-## Possible error:  																	#
-# 1. For rule adjustFASTA, the user has to indicate the position of the unique ID. 		#
-# By default, it is 2, change if necessary. 										 	#
-#   																					#
-## Usage 																				#
-# $ snakemake --snakefile snakeorthomcl.py (-np) -j 24									#
-# 																						#
+## OrthoMCL Snakemake script                                                            #
+# It runs all the steps of orthoMCL automatically, parallelizing blast.                 #
+# Steps are based on http://orthomcl.org/common/downloads/software/v2.0/UserGuide.txt   #
+# Input files: CDS proteins (obtanied from transdecoder for example).                   #
+# Output file: groups.txt, containing all the ortholog clusters.                        #
+#                                                                                       #
+## Considerations                                                                       #
+# - An empty mysql database is required.                                                #
+# - FASTA files should be renamed using only four letters: XXXX.fasta                   #
+# - orthomcl.config file is also required (attached).                                   #
+# - Blast step is parallelized, by default 50 threads.                                  #
+#                                                                                       #
+## Possible error:                                                                      #
+# 1. For rule adjustFASTA, the user has to indicate the position of the unique ID.      #
+# By default, it is 2, change if necessary.                                             #
+#                                                                                       #
+## Usage                                                                                #
+# $ snakemake --snakefile snakeorthomcl.py (-np) -j 24                                  #
+#                                                                                       #
 #########################################################################################
 
 import subprocess,sys

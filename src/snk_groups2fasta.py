@@ -1,16 +1,16 @@
 #####################################################################################
-# groups2fasta.py																	#
-# Generate the fasta files containing the family genes from the ortholog groups. 	#
-# input: groups.txt from orthomcl output AND fasta CDS files for each sample.		#
-# output: fasta files with the ortholog RNA sequences.								#
-#																					#
-## Considerations: 																	#
-# - The fasta files should be renamed with the same 4 letters codes used  			#
-# in the previous orhomcl run. 														#
-# 																					#
-# 																					#
-## Example run: 																	#
-# python groups2fasta.py -j 12 														#
+# groups2fasta.py                                                                   #
+# Generate the fasta files containing the family genes from the ortholog groups.    #
+# input: groups.txt from orthomcl output AND fasta CDS files for each sample.       #
+# output: fasta files with the ortholog RNA sequences.                              #
+#                                                                                   #
+## Considerations:                                                                  #
+# - The fasta files should be renamed with the same 4 letters codes used            #
+# in the previous orhomcl run.                                                      #
+#                                                                                   #
+#                                                                                   #
+## Example run:                                                                     #
+# python groups2fasta.py -j 12                                                      #
 #####################################################################################
 
 import subprocess
