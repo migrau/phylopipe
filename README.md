@@ -31,7 +31,7 @@ _Possible error_
 _Usage_
 
 ```{bash}
-$ snakemake --snakefile snk_orthomcl.py (-np) -j 24
+$ snakemake --snakefile snk_orthomcl.py -j 24 (-np)
 ```
 
 ### snk_groups2fasta
@@ -47,7 +47,7 @@ _Considerations_
 _Usage_
 
 ```{bash}
-snakemake --snakefile=snk_groups2fasta.py -j 12
+snakemake --snakefile snk_groups2fasta.py -j 12 (-np) 
 ```
 
 ### snk_phylo
@@ -88,3 +88,13 @@ $ snakemake --snakefile snk_phylo.py -j 24 --config fastadir=data/
 ```
 
 ## Steps
+
+Obtain ortholog groups with _snk_orthomcl_, extract sequences using _snk_groups2fasta_ and finally run _snk_phylo_ to build the phylogeny tree.
+
+- Input files: Fasta files. Proteins and CDS
+- Output file: RAxML tree. 
+
+## Coming Soon
+
+- Add different aligner (prank) in _snk_phylo_.
+- Run paml analysis with _snk_groups2fasta_ output. 
