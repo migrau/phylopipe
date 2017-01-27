@@ -25,7 +25,7 @@ from os.path import basename
 groups="groups.txt"
 
 # Full path to a folder that holds all of your FASTA files.
-FASTA_DIR = 'CDS/'
+FASTA_DIR = '../data/'
 
 # A Snakemake regular expression matching the FASTA files.
 SAMPLES, = glob_wildcards(join(FASTA_DIR, '{sample,[^/]+}.fasta'))
@@ -52,6 +52,7 @@ rule adjustFASTA:
 		mv $name.fasta CDScompliantFasta/;
 	"""
 
+#Keep only the clusters with reads from all the distinct input samples.
 rule filterGroups:
 	input: 
 		compliantFiles=expand('CDScompliantFasta/{sample}.fasta', sample=SAMPLES),

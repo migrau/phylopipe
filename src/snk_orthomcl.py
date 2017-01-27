@@ -26,7 +26,7 @@ from os.path import join
 # Globals ---------------------------------------------------------------------
 
 # Full path to a folder that holds all of your FASTA files.
-FASTA_DIR = 'assembly/'
+FASTA_DIR = '../data/'
 
 # A Snakemake regular expression matching the FASTA files.
 SAMPLES, = glob_wildcards(join(FASTA_DIR, '{sample,[^/]+}.fasta'))
@@ -51,7 +51,7 @@ rule all:
 
 rule installSchema:
 	input:
-		'orthomcl_snk.config'
+		'orthomcl.config'
 	output:
 		'install_schema.log'
 	shell:"""
@@ -134,7 +134,7 @@ rule LoadBlast:
 	output:
 		"controlLoadBlast"
 	shell:"""
-		orthomclLoadBlast orthomcl_snk.config {input};
+		orthomclLoadBlast orthomcl.config {input};
 		touch controlLoadBlast
 	"""
 
@@ -144,7 +144,7 @@ rule Pairs:
 	output:
 		"ortho10.log"
 	shell:"""
-		orthomclPairs orthomcl_snk.config ortho10.log cleanup=no
+		orthomclPairs orthomcl.config ortho10.log cleanup=no
 	"""
 
 rule DumpPairsFiles:
@@ -153,7 +153,7 @@ rule DumpPairsFiles:
 	output:
 		"mclInput"
 	shell:"""
-		orthomclDumpPairsFiles orthomcl_snk.config
+		orthomclDumpPairsFiles orthomcl.config
 	"""
 
 rule mcl:
