@@ -16,7 +16,7 @@
 # By default, it is 2, change if necessary.                                             #
 #                                                                                       #
 ## Usage                                                                                #
-# $ snakemake --snakefile snakeorthomcl.py (-np) -j 24                                  #
+# $ snakemake --snakefile snakeorthomcl.py --config fastadir=../data/ -j 24 (-np)       #
 #                                                                                       #
 #########################################################################################
 
@@ -26,7 +26,7 @@ from os.path import join
 # Globals ---------------------------------------------------------------------
 
 # Full path to a folder that holds all of your FASTA files.
-FASTA_DIR = '../data/'
+FASTA_DIR = config["fastadir"]
 
 # A Snakemake regular expression matching the FASTA files.
 SAMPLES, = glob_wildcards(join(FASTA_DIR, '{sample,[^/]+}.fasta'))

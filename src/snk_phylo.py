@@ -20,11 +20,11 @@
 # the protein translation.                                                                                #
 # - Biotpython and bioawk.                                                                                #
                                                                                                           #
-### Usage (slurm example):                                                                                #                                                                            #
+### Usage (slurm example):                                                                                #
 # $ srun --partition=compute --time 7-0 --mem=10G --cpus-per-task=24 --ntasks=1 --pty bash                #
 # $ module load python/3.5.0                                                                              #
-# (dry run) $ snakemake --snakefile snakephylo -j 24 --config fastadir=data/ -np                          #
-# $ snakemake --snakefile snakephylo -j 24 --config fastadir=data/                                        #
+# (dry run) $ snakemake --snakefile snakephylo -j 24 --config fastadir=CDSgroups/ -np                     #
+# $ snakemake --snakefile snakephylo -j 24 --config fastadir=CDSgroups/                                   #
 ###########################################################################################################
 
 import subprocess,sys

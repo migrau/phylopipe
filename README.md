@@ -24,6 +24,10 @@ _Considerations_
 - orthomcl.config file is also required (attached).
 - Blast step is parallelized, by default 50 threads.
 
+_Prerequisites_
+
+ - [pyfasta](https://pypi.python.org/pypi/pyfasta/).
+
 _Possible error_
 
 1. For rule adjustFASTA, the user has to indicate the position of the unique ID. By default, it is 2, change if necessary.
@@ -31,12 +35,12 @@ _Possible error_
 _Usage_
 
 ```{bash}
-$ snakemake --snakefile snk_orthomcl.py -j 24 (-np)
+$ snakemake --snakefile snk_orthomcl.py --config fastadir=../data/ -j 24 (-np)
 ```
 
 ### snk_groups2fasta
 
-Generate the fasta files containing the family genes from the ortholog groups.
+Generate the fasta files containing the family genes from the ortholog groups. FASTA files will be created ONLY in those cases where clusters contain at least one sample from every specie included in the study.
 - Input files: groups.txt from orthomcl output AND fasta CDS files for each sample.
 - Output file: fasta files with the ortholog RNA sequences.
 
@@ -47,7 +51,7 @@ _Considerations_
 _Usage_
 
 ```{bash}
-snakemake --snakefile snk_groups2fasta.py -j 12 (-np) 
+snakemake --snakefile snk_groups2fasta.py --config fastadir=../data/ -j 24 (-np) 
 ```
 
 ### snk_phylo
@@ -83,8 +87,8 @@ _Usage (slurm example)_
 ```{bash}
 $ srun --partition=compute --time 7-0 --mem=10G --cpus-per-task=24 --ntasks=1 --pty bash 
 $ module load python/3.5.0 
-(dry run) $ snakemake --snakefile snk_phylo.py -j 24 --config fastadir=data/ -np 
-$ snakemake --snakefile snk_phylo.py -j 24 --config fastadir=data/ 
+(dry run) $ snakemake --snakefile snk_phylo.py --config fastadir=CDSgroups/ -j 24 -np 
+$ snakemake --snakefile snk_phylo.py --config fastadir=CDSgroups/ -j 24
 ```
 
 ## Steps
@@ -96,5 +100,6 @@ Obtain ortholog groups with _snk_orthomcl_, extract sequences using _snk_groups2
 
 ## Coming Soon
 
+- Run MEGA calibration with raxml results. 
 - Add different aligner (prank) in _snk_phylo_.
 - Run paml analysis with _snk_groups2fasta_ output. 

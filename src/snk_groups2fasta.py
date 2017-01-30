@@ -10,7 +10,7 @@
 #                                                                                   #
 #                                                                                   #
 ## Example run:                                                                     #
-# python groups2fasta.py -j 12                                                      #
+# python groups2fasta.py -j 12  --config fastadir=../data/ -np                      #
 #####################################################################################
 
 import subprocess
@@ -25,7 +25,7 @@ from os.path import basename
 groups="groups.txt"
 
 # Full path to a folder that holds all of your FASTA files.
-FASTA_DIR = '../data/'
+FASTA_DIR = config["fastadir"]
 
 # A Snakemake regular expression matching the FASTA files.
 SAMPLES, = glob_wildcards(join(FASTA_DIR, '{sample,[^/]+}.fasta'))
